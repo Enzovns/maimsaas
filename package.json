@@ -1,0 +1,52 @@
+{
+  "name": "maimsaas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
+    "cron": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/scripts/cron-sender.ts"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^1.6.0",
+    "@prisma/client": "^5.22.0",
+    "@stripe/stripe-js": "^9.2.0",
+    "bcryptjs": "^3.0.3",
+    "formidable": "^3.5.4",
+    "googleapis": "^171.4.0",
+    "lucide-react": "^1.8.0",
+    "next": "14.2.35",
+    "next-auth": "^4.24.14",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^7.0.13",
+    "prisma": "^5.22.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "stripe": "^22.0.2",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/formidable": "^3.5.1",
+    "@types/node": "^20",
+    "@types/node-cron": "^3.0.11",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.35",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
