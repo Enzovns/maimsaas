@@ -11,7 +11,8 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
-    "cron": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/scripts/cron-sender.ts"
+    "cron": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/scripts/cron-sender.ts",
+    "postbuild": "prisma db push && prisma db seed"
   },
   "prisma": {
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts"
