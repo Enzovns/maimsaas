@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { createBillingPortalSession } from "@/lib/stripe";
 
+export const dynamic = "force-dynamic";
+
 type SessionUser = { id?: string };
 
 export async function POST() {

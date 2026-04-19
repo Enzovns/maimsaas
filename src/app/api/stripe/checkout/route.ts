@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { createStripeCustomer, createCheckoutSession } from "@/lib/stripe";
 
+export const dynamic = "force-dynamic";
+
 type SessionUser = { id?: string; email?: string | null; name?: string | null };
 
 export async function POST() {

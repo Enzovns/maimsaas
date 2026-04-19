@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendDailyCVs } from "@/lib/cv-sender";
 
+export const dynamic = "force-dynamic";
+
 // This endpoint is called by the cron job (Vercel Cron or external scheduler)
 // Secure it with a secret header
 export async function POST(req: NextRequest) {
