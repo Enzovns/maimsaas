@@ -421,7 +421,7 @@ export default function DashboardPage() {
                   href="/onboarding/payment"
                   className="block w-full text-center text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-xl font-medium transition-colors"
                 >
-                  Subscribe – $9.99/mo
+                  Subscribe – $9.99/wk
                 </Link>
               )}
             </div>

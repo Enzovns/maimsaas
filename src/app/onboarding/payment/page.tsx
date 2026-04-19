@@ -78,7 +78,7 @@ function PaymentPageContent() {
           </div>
           <div className="text-right">
             <span className="text-3xl font-bold text-gray-900">$9.99</span>
-            <span className="text-gray-500">/mo</span>
+            <span className="text-gray-500">/wk</span>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ function PaymentPageContent() {
           disabled={loading}
           className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50 text-white py-4 rounded-xl font-semibold text-lg transition-colors"
         >
-          {loading ? "Redirecting to payment..." : "Subscribe Now – $9.99/month"}
+          {loading ? "Redirecting to payment..." : "Subscribe Now – $9.99/week"}
         </button>
         <p className="text-center text-xs text-gray-500 mt-3">
           Secured by Stripe. Cancel anytime from your dashboard.

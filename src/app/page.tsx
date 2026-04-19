@@ -59,7 +59,7 @@ export default function LandingPage() {
               href="/auth/register"
               className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors w-full sm:w-auto"
             >
-              Start for $9.99/month
+              Start for $9.99/week
             </Link>
             <Link
               href="#how-it-works"
@@ -106,7 +106,7 @@ export default function LandingPage() {
               {
                 step: "1",
                 title: "Sign up & pay",
-                desc: "Create your account and subscribe for $9.99/month.",
+                desc: "Create your account and subscribe for $9.99/week.",
                 icon: Users,
               },
               {
@@ -176,7 +176,7 @@ export default function LandingPage() {
           <p className="text-gray-600 mb-12">One plan. Everything included.</p>
           <div className="border-2 border-yellow-400 rounded-2xl p-8 bg-white shadow-lg">
             <div className="text-5xl font-bold text-gray-900 mb-2">$9.99</div>
-            <div className="text-gray-500 mb-6">per month</div>
+            <div className="text-gray-500 mb-6">per week</div>
             <ul className="text-left space-y-3 mb-8">
               {[
                 "Daily CV sending to 20+ companies",
