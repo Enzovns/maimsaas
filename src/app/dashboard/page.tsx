@@ -191,99 +191,102 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <nav className="bg-white border-b border-gray-100 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+      <nav className="bg-white border-b border-gray-100 px-4 sm:px-6 py-4">
+        <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">M</span>
             </div>
             <span className="font-bold text-xl text-gray-900">MineApply</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600">{user.email}</span>
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+            <span className="text-sm text-gray-600 hidden sm:block truncate max-w-[180px]">
+              {user.email}
+            </span>
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm"
+              className="flex items-center gap-1.5 text-gray-500 hover:text-gray-700 text-sm whitespace-nowrap min-h-[40px] px-2"
             >
               <LogOut size={16} />
-              Sign out
+              <span>Sign out</span>
             </button>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-10">
         {/* Alerts */}
         {error && (
-          <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-6">
-            <AlertCircle size={18} />
-            <span className="text-sm">{error}</span>
-            <button onClick={() => setError("")} className="ml-auto">
+          <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-5 sm:mb-6">
+            <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+            <span className="text-sm flex-1">{error}</span>
+            <button onClick={() => setError("")} className="flex-shrink-0">
               <XCircle size={16} />
             </button>
           </div>
         )}
         {success && (
-          <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-green-700 mb-6">
-            <CheckCircle size={18} />
-            <span className="text-sm">{success}</span>
-            <button onClick={() => setSuccess("")} className="ml-auto">
+          <div className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-green-700 mb-5 sm:mb-6">
+            <CheckCircle size={18} className="flex-shrink-0 mt-0.5" />
+            <span className="text-sm flex-1">{success}</span>
+            <button onClick={() => setSuccess("")} className="flex-shrink-0">
               <XCircle size={16} />
             </button>
           </div>
         )}
 
-        {/* Onboarding warning */}
+        {/* Subscription warning */}
         {!isSubscribed && (
-          <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-6 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <AlertCircle className="text-amber-600" size={18} />
+          <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-4 mb-5 sm:mb-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="text-amber-600 flex-shrink-0 mt-0.5" size={18} />
               <span className="text-sm text-amber-800 font-medium">
                 You need an active subscription to send CVs.
               </span>
             </div>
             <Link
               href="/onboarding/payment"
-              className="text-sm bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              className="text-sm bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-lg font-medium transition-colors text-center sm:flex-shrink-0 min-h-[40px] flex items-center justify-center"
             >
               Subscribe
             </Link>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-5 sm:mb-8">
           {/* Today's sends */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
-                <TrendingUp className="text-yellow-600" size={20} />
+          <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-yellow-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="text-yellow-600" size={16} />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Sent today</p>
-                <p className="text-2xl font-bold text-gray-900">{todayCount}</p>
+                <p className="text-xs text-gray-500">Sent today</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">{todayCount}</p>
               </div>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 hidden sm:block">
               of {activeCompanyCount} active companies
             </p>
           </div>
 
           {/* Status */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-6">
-            <div className="flex items-center gap-3 mb-4">
+          <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
               <div
-                className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
                   user.isActive ? "bg-green-100" : "bg-gray-100"
                 }`}
               >
                 <Power
                   className={user.isActive ? "text-green-600" : "text-gray-400"}
-                  size={20}
+                  size={16}
                 />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Status</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-xs text-gray-500">Status</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">
                   {user.isActive ? "Active" : "Paused"}
                 </p>
               </div>
@@ -291,51 +294,47 @@ export default function DashboardPage() {
             <button
               onClick={handleToggle}
               disabled={toggling || !readyToSend}
-              className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors disabled:opacity-50 ${
+              className={`text-xs px-2.5 py-1.5 rounded-lg font-medium transition-colors disabled:opacity-50 min-h-[32px] ${
                 user.isActive
                   ? "bg-red-100 text-red-700 hover:bg-red-200"
                   : "bg-green-100 text-green-700 hover:bg-green-200"
               }`}
             >
-              {toggling
-                ? "..."
-                : user.isActive
-                ? "Pause sending"
-                : "Activate sending"}
+              {toggling ? "..." : user.isActive ? "Pause" : "Activate"}
             </button>
           </div>
 
           {/* Next send */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-                <Clock className="text-blue-600" size={20} />
+          <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Clock className="text-blue-600" size={16} />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Next send</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {user.isActive ? "8:00am" : "Paused"}
+                <p className="text-xs text-gray-500">Next send</p>
+                <p className="text-lg sm:text-2xl font-bold text-gray-900">
+                  {user.isActive ? "8am" : "Paused"}
                 </p>
               </div>
             </div>
-            <p className="text-xs text-gray-500">Daily at 8am AWST</p>
+            <p className="text-xs text-gray-500 hidden sm:block">Daily at 8am AWST</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left column: account setup */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+          {/* Account panels */}
           <div className="lg:col-span-1 space-y-4">
             {/* Gmail */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6">
+            <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Mail size={20} className="text-gray-600" />
+                <Mail size={18} className="text-gray-600 flex-shrink-0" />
                 <h3 className="font-semibold text-gray-900">Gmail</h3>
                 {user.gmailConnected ? (
-                  <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                  <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
                     Connected
                   </span>
                 ) : (
-                  <span className="ml-auto text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">
+                  <span className="ml-auto text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
                     Disconnected
                   </span>
                 )}
@@ -343,14 +342,14 @@ export default function DashboardPage() {
               {user.gmailConnected ? (
                 <button
                   onClick={handleGmailDisconnect}
-                  className="w-full text-sm border border-red-200 text-red-600 hover:bg-red-50 py-2 rounded-xl transition-colors"
+                  className="w-full text-sm border border-red-200 text-red-600 hover:bg-red-50 py-2.5 rounded-xl transition-colors min-h-[44px]"
                 >
                   Disconnect Gmail
                 </button>
               ) : (
                 <a
                   href="/api/gmail/connect"
-                  className="block w-full text-center text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-xl font-medium transition-colors"
+                  className="block w-full text-center text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-xl font-medium transition-colors min-h-[44px] flex items-center justify-center"
                 >
                   Connect Gmail
                 </a>
@@ -358,16 +357,16 @@ export default function DashboardPage() {
             </div>
 
             {/* CV */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6">
+            <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
-                <FileText size={20} className="text-gray-600" />
+                <FileText size={18} className="text-gray-600 flex-shrink-0" />
                 <h3 className="font-semibold text-gray-900">CV</h3>
                 {user.cvPath ? (
-                  <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                  <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
                     Uploaded
                   </span>
                 ) : (
-                  <span className="ml-auto text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">
+                  <span className="ml-auto text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
                     Missing
                   </span>
                 )}
@@ -387,7 +386,7 @@ export default function DashboardPage() {
               <button
                 onClick={() => fileRef.current?.click()}
                 disabled={uploading}
-                className="w-full flex items-center justify-center gap-2 text-sm border border-gray-200 hover:bg-gray-50 text-gray-700 py-2 rounded-xl transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 text-sm border border-gray-200 hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl transition-colors disabled:opacity-50 min-h-[44px]"
               >
                 <Upload size={14} />
                 {uploading ? "Uploading..." : user.cvPath ? "Replace CV" : "Upload CV"}
@@ -395,12 +394,12 @@ export default function DashboardPage() {
             </div>
 
             {/* Subscription */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6">
+            <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
-                <CreditCard size={20} className="text-gray-600" />
+                <CreditCard size={18} className="text-gray-600 flex-shrink-0" />
                 <h3 className="font-semibold text-gray-900">Subscription</h3>
                 <span
-                  className={`ml-auto text-xs px-2 py-0.5 rounded-full font-medium ${
+                  className={`ml-auto text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap ${
                     isSubscribed
                       ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
@@ -412,14 +411,14 @@ export default function DashboardPage() {
               {isSubscribed ? (
                 <button
                   onClick={handleBillingPortal}
-                  className="w-full text-sm border border-gray-200 hover:bg-gray-50 text-gray-700 py-2 rounded-xl transition-colors"
+                  className="w-full text-sm border border-gray-200 hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl transition-colors min-h-[44px]"
                 >
                   Manage / Cancel
                 </button>
               ) : (
                 <Link
                   href="/onboarding/payment"
-                  className="block w-full text-center text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-xl font-medium transition-colors"
+                  className="block w-full text-center text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-xl font-medium transition-colors min-h-[44px] flex items-center justify-center"
                 >
                   Subscribe – $9.99/wk
                 </Link>
@@ -427,28 +426,28 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Right column: send history */}
+          {/* Send history */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl border border-gray-100 p-6">
+            <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6">
               <h3 className="font-semibold text-gray-900 mb-4">
                 Last 7 days of sends
               </h3>
               {sendLogs.length === 0 ? (
-                <div className="text-center py-12">
-                  <Clock className="text-gray-300 mx-auto mb-3" size={40} />
+                <div className="text-center py-10 sm:py-12">
+                  <Clock className="text-gray-300 mx-auto mb-3" size={36} />
                   <p className="text-gray-500 text-sm">No send history yet.</p>
                   <p className="text-gray-400 text-xs mt-1">
                     Your first send will appear here after 8am AWST.
                   </p>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2.5 sm:space-y-3">
                   {sendLogs.map((log) => (
                     <div
                       key={log.id}
-                      className="flex items-center justify-between p-4 rounded-xl bg-gray-50"
+                      className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-gray-50 gap-2"
                     >
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-sm font-medium text-gray-900">
                           {new Date(log.createdAt).toLocaleDateString("en-AU", {
                             weekday: "short",
@@ -457,17 +456,17 @@ export default function DashboardPage() {
                           })}
                         </p>
                         {log.errorMessage && (
-                          <p className="text-xs text-gray-500 mt-0.5 truncate max-w-xs">
+                          <p className="text-xs text-gray-500 mt-0.5 truncate max-w-[160px] sm:max-w-xs">
                             {log.errorMessage}
                           </p>
                         )}
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-gray-900">
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">
                           {log.recipientCount} sent
                         </span>
                         <span
-                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap ${
                             statusColor[log.status as keyof typeof statusColor] ||
                             "bg-gray-100 text-gray-600"
                           }`}

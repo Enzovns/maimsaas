@@ -41,23 +41,23 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center px-4 py-10 sm:py-0 sm:items-center">
+      <div className="w-full max-w-md mx-auto">
+        <div className="text-center mb-6 sm:mb-8">
+          <Link href="/" className="inline-flex items-center gap-2 mb-5 sm:mb-6">
             <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">M</span>
             </div>
             <span className="font-bold text-xl text-gray-900">MineApply</span>
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-600 mt-2">Sign in to your account</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Welcome back</h1>
+          <p className="text-gray-600 mt-2 text-sm sm:text-base">Sign in to your account</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8">
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-xl py-3 px-4 text-gray-700 font-medium hover:bg-gray-50 transition-colors mb-6"
+            className="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-xl py-3 px-4 text-gray-700 font-medium hover:bg-gray-50 active:bg-gray-100 transition-colors mb-5 sm:mb-6 min-h-[48px]"
           >
             <svg width="18" height="18" viewBox="0 0 18 18">
               <path
@@ -80,7 +80,7 @@ function LoginForm() {
             Continue with Google
           </button>
 
-          <div className="relative mb-6">
+          <div className="relative mb-5 sm:mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200" />
             </div>
@@ -105,8 +105,9 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 placeholder="you@example.com"
+                autoComplete="email"
               />
             </div>
             <div>
@@ -118,20 +119,21 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 placeholder="••••••••"
+                autoComplete="current-password"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50 text-white py-3 rounded-xl font-semibold transition-colors"
+              className="w-full bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 disabled:opacity-50 text-white py-3.5 rounded-xl font-semibold transition-colors min-h-[48px]"
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-600 mt-6">
+          <p className="text-center text-sm text-gray-600 mt-5 sm:mt-6">
             Don&apos;t have an account?{" "}
             <Link href="/auth/register" className="text-yellow-600 font-medium hover:underline">
               Sign up

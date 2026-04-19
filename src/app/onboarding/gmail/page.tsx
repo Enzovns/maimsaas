@@ -31,22 +31,22 @@ function GmailPageContent() {
   }
 
   return (
-    <div className="max-w-xl mx-auto px-4 py-16">
+    <div className="max-w-xl mx-auto px-4 py-8 sm:py-16">
       <OnboardingSteps current={2} />
 
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
           Connect your Gmail
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm sm:text-base">
           We need access to send emails on your behalf. Your CV will be sent
           from your own Gmail address.
         </p>
       </div>
 
       {error && (
-        <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-6">
-          <AlertCircle size={18} />
+        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-5 sm:mb-6">
+          <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
           <span className="text-sm">
             {error === "access_denied"
               ? "Gmail access was denied. Please try again."
@@ -55,30 +55,30 @@ function GmailPageContent() {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-6">
-        <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-          <Mail className="text-red-500" size={32} />
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-8 mb-6">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-5 sm:mb-6">
+          <Mail className="text-red-500" size={28} />
         </div>
 
-        <h2 className="text-xl font-bold text-gray-900 text-center mb-2">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 text-center mb-2">
           Gmail Authorization
         </h2>
-        <p className="text-gray-600 text-sm text-center mb-6">
+        <p className="text-gray-600 text-sm text-center mb-5 sm:mb-6">
           Clicking below will redirect you to Google to authorize MineApply to
           send emails from your account.
         </p>
 
-        <div className="bg-gray-50 rounded-xl p-4 mb-6">
-          <p className="text-sm font-medium text-gray-700 mb-3">
+        <div className="bg-gray-50 rounded-xl p-4 mb-5 sm:mb-6">
+          <p className="text-sm font-medium text-gray-700 mb-2.5">
             We only request permission to:
           </p>
           <ul className="space-y-2">
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <CheckCircle className="text-green-500 flex-shrink-0" size={16} />
+              <CheckCircle className="text-green-500 flex-shrink-0" size={15} />
               Send emails on your behalf
             </li>
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <CheckCircle className="text-green-500 flex-shrink-0" size={16} />
+              <CheckCircle className="text-green-500 flex-shrink-0" size={15} />
               View your email address
             </li>
           </ul>
@@ -89,7 +89,7 @@ function GmailPageContent() {
 
         <button
           onClick={handleConnect}
-          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-gray-300 rounded-xl py-3 px-4 text-gray-700 font-medium transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-gray-300 active:bg-gray-50 rounded-xl py-3.5 px-4 text-gray-700 font-medium transition-colors min-h-[52px]"
         >
           <svg width="20" height="20" viewBox="0 0 18 18">
             <path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z" />

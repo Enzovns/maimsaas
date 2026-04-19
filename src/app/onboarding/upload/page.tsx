@@ -73,12 +73,12 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="max-w-xl mx-auto px-4 py-16">
+    <div className="max-w-xl mx-auto px-4 py-8 sm:py-16">
       <OnboardingSteps current={3} />
 
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Upload your CV</h1>
-        <p className="text-gray-600">
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Upload your CV</h1>
+        <p className="text-gray-600 text-sm sm:text-base">
           Upload your PDF CV once. We&apos;ll attach it to every email we send.
         </p>
       </div>
@@ -92,20 +92,20 @@ export default function UploadPage() {
           <p className="text-gray-600">Taking you to your dashboard...</p>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-8">
           {error && (
-            <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-6">
-              <AlertCircle size={18} />
+            <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 mb-5 sm:mb-6">
+              <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
               <span className="text-sm">{error}</span>
             </div>
           )}
 
           <div
             onClick={() => fileRef.current?.click()}
-            className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-colors ${
+            className={`border-2 border-dashed rounded-2xl p-7 sm:p-10 text-center cursor-pointer transition-colors ${
               file
                 ? "border-yellow-400 bg-yellow-50"
-                : "border-gray-200 hover:border-yellow-300 hover:bg-gray-50"
+                : "border-gray-200 hover:border-yellow-300 hover:bg-gray-50 active:bg-gray-100"
             }`}
           >
             <input
@@ -117,21 +117,21 @@ export default function UploadPage() {
             />
             {file ? (
               <div className="flex flex-col items-center gap-3">
-                <FileText className="text-yellow-500" size={40} />
+                <FileText className="text-yellow-500" size={36} />
                 <div>
-                  <p className="font-semibold text-gray-900">{file.name}</p>
+                  <p className="font-semibold text-gray-900 text-sm sm:text-base break-all">{file.name}</p>
                   <p className="text-sm text-gray-500">
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
                 </div>
-                <p className="text-sm text-yellow-600">Click to change file</p>
+                <p className="text-sm text-yellow-600">Tap to change file</p>
               </div>
             ) : (
               <div className="flex flex-col items-center gap-3">
-                <Upload className="text-gray-400" size={40} />
+                <Upload className="text-gray-400" size={36} />
                 <div>
-                  <p className="font-semibold text-gray-700">
-                    Click to upload your CV
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                    Tap to upload your CV
                   </p>
                   <p className="text-sm text-gray-500">PDF only, max 10MB</p>
                 </div>
@@ -142,7 +142,7 @@ export default function UploadPage() {
           <button
             onClick={handleUpload}
             disabled={!file || uploading}
-            className="w-full mt-6 bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50 text-white py-4 rounded-xl font-semibold transition-colors"
+            className="w-full mt-5 sm:mt-6 bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 disabled:opacity-50 text-white py-4 rounded-xl font-semibold transition-colors min-h-[52px]"
           >
             {uploading ? "Uploading..." : "Upload CV & Go to Dashboard"}
           </button>
