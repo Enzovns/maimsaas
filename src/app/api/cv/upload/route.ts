@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 
 export const dynamic = "force-dynamic";
+
+type SessionUser = { id?: string };
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userId = (session.user as any).id;
+    const userId = (session.user as SessionUser).id!;
 
     const formData = await req.formData();
     const file = formData.get("cv") as File;
@@ -31,27 +31,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "File too large (max 10MB)" }, { status: 400 });
     }
 
-    const uploadDir = path.join(process.cwd(), "public", "uploads", "cvs");
-    await mkdir(uploadDir, { recursive: true });
-
-    const fileName = `${userId}-${Date.now()}.pdf`;
-    const filePath = path.join(uploadDir, fileName);
-    const relativePath = `/uploads/cvs/${fileName}`;
-
     const bytes = await file.arrayBuffer();
-    await writeFile(filePath, Buffer.from(bytes));
+    const base64 = Buffer.from(bytes).toString("base64");
 
     await prisma.user.update({
       where: { id: userId },
       data: {
-        cvPath: relativePath,
+        cvData: base64,
         cvOriginalName: file.name,
+        cvPath: file.name, // kept for backward compat — now just stores the filename
       },
     });
 
-    return NextResponse.json({ path: relativePath, name: file.name });
-  } catch (err: any) {
+    return NextResponse.json({ name: file.name });
+  } catch (err: unknown) {
     console.error("CV upload error:", err);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Upload failed", details: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
   }
 }

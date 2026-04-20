@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const activeUsers = await prisma.user.findMany({
       where: {
         subscriptionStatus: "active",
-        cvPath: { not: null },
+        cvData: { not: null },
       },
     });
 
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
 
         let cvText: string;
         try {
-          cvText = await extractCvText(user.cvPath!);
+          cvText = await extractCvText(user.cvData!);
         } catch {
           errors.push(`User ${user.id}: failed to parse CV`);
           continue;

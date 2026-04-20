@@ -50,6 +50,7 @@ model User {
   gmailTokenExpiry     DateTime?
   cvPath               String?
   cvOriginalName       String?
+  cvData               String?   @db.Text
   isActive             Boolean   @default(false)
   preferredRoles       String[]
   preferredStates      String[]
