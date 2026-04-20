@@ -44,18 +44,24 @@ model User {
   stripeCustomerId     String?   @unique
   stripeSubscriptionId String?   @unique
   subscriptionStatus   String?   @default("inactive")
+  subscriptionTier     String    @default("standard")
   gmailAccessToken     String?   @db.Text
   gmailRefreshToken    String?   @db.Text
   gmailTokenExpiry     DateTime?
   cvPath               String?
   cvOriginalName       String?
   isActive             Boolean   @default(false)
+  preferredRoles       String[]
+  preferredStates      String[]
+  preferredRoster      String?
+  experienceLevel      String?
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
 
-  accounts Account[]
-  sessions Session[]
-  sendLogs SendLog[]
+  accounts     Account[]
+  sessions     Session[]
+  sendLogs     SendLog[]
+  applications GeneratedApplication[]
 }
 
 model VerificationToken {
@@ -84,4 +90,37 @@ model MiningCompany {
   email    String  @unique
   state    String
   isActive Boolean @default(true)
+}
+
+model JobListing {
+  id           String    @id @default(cuid())
+  title        String
+  company      String
+  location     String
+  state        String?
+  description  String    @db.Text
+  salary       String?
+  url          String    @unique
+  source       String
+  postedDate   DateTime?
+  scrapedAt    DateTime  @default(now())
+  isActive     Boolean   @default(true)
+
+  applications GeneratedApplication[]
+}
+
+model GeneratedApplication {
+  id           String     @id @default(cuid())
+  userId       String
+  jobListingId String
+  coverLetter  String     @db.Text
+  cvSummary    String     @db.Text
+  status       String     @default("generated")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobListing JobListing @relation(fields: [jobListingId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobListingId])
 }

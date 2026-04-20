@@ -14,23 +14,24 @@ export async function createStripeCustomer(email: string, name: string) {
 export async function createCheckoutSession(
   customerId: string,
   userId: string,
+  tier: "standard" | "pro",
   successUrl: string,
   cancelUrl: string
 ) {
+  const priceId =
+    tier === "pro"
+      ? process.env.STRIPE_PRICE_ID_PRO!
+      : process.env.STRIPE_PRICE_ID_STANDARD!;
+
   return getStripe().checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
     payment_method_types: ["card"],
-    line_items: [
-      {
-        price: process.env.STRIPE_PRICE_ID!,
-        quantity: 1,
-      },
-    ],
+    line_items: [{ price: priceId, quantity: 1 }],
     success_url: successUrl,
     cancel_url: cancelUrl,
     allow_promotion_codes: true,
-    metadata: { userId },
+    metadata: { userId, tier },
   });
 }
 

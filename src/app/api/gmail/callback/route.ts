@@ -31,12 +31,12 @@ export async function GET(req: NextRequest) {
     });
 
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/onboarding/upload`
+      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Gmail OAuth callback error:", err);
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/onboarding/gmail?error=token_exchange_failed`
+      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?gmailError=token_exchange_failed`
     );
   }
 }

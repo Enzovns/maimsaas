@@ -25,11 +25,13 @@ export async function POST(req: NextRequest) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
       if (session.mode === "subscription" && session.subscription) {
+        const tier = (session.metadata?.tier ?? "standard") as "standard" | "pro";
         await prisma.user.updateMany({
           where: { stripeCustomerId: session.customer as string },
           data: {
             stripeSubscriptionId: session.subscription as string,
             subscriptionStatus: "active",
+            subscriptionTier: tier,
           },
         });
       }

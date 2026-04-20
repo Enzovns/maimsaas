@@ -27,9 +27,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    if (!user.gmailRefreshToken) {
-      return NextResponse.json({ error: "Gmail not connected" }, { status: 400 });
-    }
     if (!user.cvPath) {
       return NextResponse.json({ error: "CV not uploaded" }, { status: 400 });
     }

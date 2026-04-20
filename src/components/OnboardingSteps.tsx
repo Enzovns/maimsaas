@@ -2,7 +2,7 @@ import { CheckCircle } from "lucide-react";
 
 const steps = [
   { id: 1, label: "Payment" },
-  { id: 2, label: "Gmail" },
+  { id: 2, label: "Preferences" },
   { id: 3, label: "Upload CV" },
 ];
 
