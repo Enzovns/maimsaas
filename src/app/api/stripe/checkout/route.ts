@@ -45,6 +45,6 @@ export async function POST() {
     return NextResponse.json({ url: checkoutSession.url });
   } catch (err: unknown) {
     console.error("Stripe checkout error:", err);
-    return NextResponse.json({ error: "Failed to create checkout" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to create checkout", details: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
