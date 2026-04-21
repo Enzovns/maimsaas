@@ -21,6 +21,7 @@ import {
   DollarSign,
   ChevronDown,
   ChevronUp,
+  Clock,
 } from "lucide-react";
 import Link from "next/link";
 import { LogoLink } from "@/components/LogoLink";
@@ -35,6 +36,7 @@ interface UserData {
   cvPath: string | null;
   cvOriginalName: string | null;
   isActive: boolean;
+  preferredRoles: string[];
 }
 
 interface JobListing {
@@ -301,6 +303,113 @@ export default function DashboardPage() {
             <span className="text-xs text-gray-500">{applications.length} total (last 30 days)</span>
           </div>
 
+          {applications.length === 0 ? (
+            /* Onboarding empty state — no applications exist yet */
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8">
+              <h3 className="text-base font-bold text-gray-900 mb-1">
+                You&apos;re all set — first matches incoming
+              </h3>
+              <p className="text-sm text-gray-500 mb-5">Here&apos;s where things stand:</p>
+
+              <div className="space-y-3 mb-6">
+                {/* Account created — always done */}
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check size={11} className="text-green-600" />
+                  </div>
+                  <span className="text-sm text-gray-700">Account created</span>
+                </div>
+
+                {/* Plan activated */}
+                <div className="flex items-start gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${isSubscribed ? "bg-green-100" : "bg-amber-100"}`}>
+                    {isSubscribed
+                      ? <Check size={11} className="text-green-600" />
+                      : <AlertCircle size={11} className="text-amber-600" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm text-gray-700">
+                      {isSubscribed
+                        ? `${isPro ? "Pro" : "Standard"} plan activated`
+                        : "Plan not activated"}
+                    </span>
+                    {!isSubscribed && (
+                      <Link href="/onboarding/payment" className="ml-2 text-xs text-yellow-600 font-medium hover:underline">
+                        Subscribe →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* CV uploaded */}
+                <div className="flex items-start gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${user.cvPath ? "bg-green-100" : "bg-amber-100"}`}>
+                    {user.cvPath
+                      ? <Check size={11} className="text-green-600" />
+                      : <AlertCircle size={11} className="text-amber-600" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm text-gray-700">
+                      {user.cvPath ? `CV uploaded` : "CV not uploaded"}
+                    </span>
+                    {!user.cvPath && (
+                      <button
+                        onClick={() => fileRef.current?.click()}
+                        className="ml-2 text-xs text-yellow-600 font-medium hover:underline"
+                      >
+                        Upload now →
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Preferences set */}
+                <div className="flex items-start gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${user.preferredRoles.length > 0 ? "bg-green-100" : "bg-amber-100"}`}>
+                    {user.preferredRoles.length > 0
+                      ? <Check size={11} className="text-green-600" />
+                      : <AlertCircle size={11} className="text-amber-600" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm text-gray-700">
+                      {user.preferredRoles.length > 0 ? "Job preferences set" : "Job preferences not set"}
+                    </span>
+                    {user.preferredRoles.length === 0 && (
+                      <Link href="/onboarding/preferences" className="ml-2 text-xs text-yellow-600 font-medium hover:underline">
+                        Set preferences →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* Daily matching — always pending until first run */}
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Clock size={11} className="text-gray-400" />
+                  </div>
+                  <span className="text-sm text-gray-500">
+                    Daily job matching — runs tonight at 10pm UTC (8am AWST)
+                  </span>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl px-4 py-3.5 text-sm text-gray-600 leading-relaxed mb-4">
+                Every night we scan Adzuna for new mining jobs matching your preferences, then
+                generate a tailored cover letter and CV summary for each one. Your first matches
+                will appear tomorrow morning.
+              </div>
+
+              {isPro && (
+                <div className="flex items-center gap-2 text-sm text-yellow-800 bg-yellow-50 border border-yellow-100 rounded-xl px-4 py-3">
+                  <Zap size={14} className="flex-shrink-0 text-yellow-600" />
+                  <span>
+                    <strong>Auto-apply is enabled</strong> — we&apos;ll apply on your behalf once matches are found.
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
           {/* Tab filter */}
           <div className="flex gap-1 bg-gray-100 rounded-xl p-1 w-fit mb-5">
             {(["generated", "applied", "dismissed"] as TabFilter[]).map((t) => (
@@ -324,27 +433,7 @@ export default function DashboardPage() {
           {filtered.length === 0 ? (
             <div className="bg-white rounded-2xl border border-gray-100 p-10 sm:p-16 text-center">
               <Briefcase className="text-gray-200 mx-auto mb-4" size={48} />
-              {tab === "generated" ? (
-                <>
-                  <p className="text-gray-600 font-medium mb-1">No new matches yet</p>
-                  <p className="text-gray-400 text-sm">
-                    {!user.cvPath
-                      ? "Upload your CV to start receiving daily job matches."
-                      : "New jobs are matched every night. Check back tomorrow."}
-                  </p>
-                  {!user.cvPath && (
-                    <button
-                      onClick={() => fileRef.current?.click()}
-                      className="mt-4 inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-colors"
-                    >
-                      <Upload size={14} />
-                      Upload CV
-                    </button>
-                  )}
-                </>
-              ) : (
-                <p className="text-gray-400 text-sm">No {tab} applications.</p>
-              )}
+              <p className="text-gray-400 text-sm">No {tab === "generated" ? "new" : tab} applications.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -523,6 +612,8 @@ export default function DashboardPage() {
                 );
               })}
             </div>
+          )}
+            </>
           )}
         </div>
 

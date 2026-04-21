@@ -27,6 +27,7 @@ export async function GET() {
       cvPath: true,
       cvOriginalName: true,
       isActive: true,
+      preferredRoles: true,
     },
   });
 
