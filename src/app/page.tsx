@@ -7,6 +7,7 @@ import {
   Brain,
   Briefcase,
 } from "lucide-react";
+import { LogoLink } from "@/components/LogoLink";
 
 export default function LandingPage() {
   return (
@@ -14,12 +15,7 @@ export default function LandingPage() {
       {/* Nav */}
       <nav className="border-b border-gray-100 px-4 sm:px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">M</span>
-            </div>
-            <span className="font-bold text-xl text-gray-900">MineApply</span>
-          </div>
+          <LogoLink />
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/auth/login"

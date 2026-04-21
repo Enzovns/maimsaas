@@ -23,6 +23,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import Link from "next/link";
+import { LogoLink } from "@/components/LogoLink";
 
 interface UserData {
   id: string;
@@ -205,12 +206,7 @@ export default function DashboardPage() {
       {/* Nav */}
       <nav className="bg-white border-b border-gray-100 px-4 sm:px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">M</span>
-            </div>
-            <span className="font-bold text-xl text-gray-900">MineApply</span>
-          </Link>
+          <LogoLink />
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             {isPro && (
               <span className="hidden sm:flex items-center gap-1 text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-semibold">
