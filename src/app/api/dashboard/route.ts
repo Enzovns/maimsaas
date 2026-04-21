@@ -5,13 +5,15 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+type SessionUser = { id?: string };
+
 export async function GET() {
   const session = await getServerSession(authOptions);
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = (session.user as any).id;
+  const userId = (session.user as SessionUser).id!;
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -20,6 +22,7 @@ export async function GET() {
       name: true,
       email: true,
       subscriptionStatus: true,
+      subscriptionTier: true,
       gmailRefreshToken: true,
       cvPath: true,
       cvOriginalName: true,
@@ -31,30 +34,14 @@ export async function GET() {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
 
-  const sendLogs = await prisma.sendLog.findMany({
+  const todayMatchCount = await prisma.generatedApplication.count({
     where: {
       userId,
-      createdAt: { gte: sevenDaysAgo },
+      createdAt: { gte: todayStart },
     },
-    orderBy: { createdAt: "desc" },
-    take: 7,
-  });
-
-  const todayLog = sendLogs.find((log) => {
-    const today = new Date();
-    const logDate = new Date(log.createdAt);
-    return (
-      logDate.getDate() === today.getDate() &&
-      logDate.getMonth() === today.getMonth() &&
-      logDate.getFullYear() === today.getFullYear()
-    );
-  });
-
-  const activeCompanyCount = await prisma.miningCompany.count({
-    where: { isActive: true },
   });
 
   return NextResponse.json({
@@ -62,8 +49,6 @@ export async function GET() {
       ...user,
       gmailConnected: !!user.gmailRefreshToken,
     },
-    todayCount: todayLog?.recipientCount || 0,
-    sendLogs,
-    activeCompanyCount,
+    todayMatchCount,
   });
 }

@@ -2,10 +2,10 @@ import Link from "next/link";
 import {
   CheckCircle,
   Zap,
-  Mail,
-  Shield,
-  TrendingUp,
-  Users,
+  FileText,
+  Search,
+  Brain,
+  Briefcase,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -42,17 +42,16 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-yellow-800 font-medium mb-6 sm:mb-8">
             <Zap size={13} />
-            Automated for Australian Mining Jobs
+            AI-powered job applications for Australian mining
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-            Your CV. Sent to{" "}
-            <span className="text-yellow-500">20+ mining companies</span> every
-            single day.
+            Daily mining job matches.{" "}
+            <span className="text-yellow-500">AI-written applications.</span>
           </h1>
           <p className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-            MineApply automatically sends your CV to top Australian mining
-            company HR departments every morning. Upload once, apply
-            everywhere — effortlessly.
+            MineApply scans for new Australian mining jobs every day, matches them to your
+            preferences, then generates a tailored cover letter and CV summary for each one —
+            ready to copy and apply in seconds.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
@@ -76,16 +75,16 @@ export default function LandingPage() {
       <section className="bg-gray-50 px-4 sm:px-6 py-10 sm:py-16">
         <div className="max-w-4xl mx-auto grid grid-cols-3 gap-4 sm:gap-8 text-center">
           <div>
-            <div className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">20+</div>
-            <div className="text-gray-600 text-xs sm:text-base">Companies targeted daily</div>
+            <div className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">Daily</div>
+            <div className="text-gray-600 text-xs sm:text-base">New jobs scraped from Adzuna</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">8am</div>
-            <div className="text-gray-600 text-xs sm:text-base">Sent every morning AWST</div>
+            <div className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">AI</div>
+            <div className="text-gray-600 text-xs sm:text-base">Cover letter per job match</div>
           </div>
           <div>
             <div className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">$9.99</div>
-            <div className="text-gray-600 text-xs sm:text-base">Per week, all included</div>
+            <div className="text-gray-600 text-xs sm:text-base">Per week to start</div>
           </div>
         </div>
       </section>
@@ -95,37 +94,37 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Get started in minutes
+              How it works
             </h2>
             <p className="text-base sm:text-xl text-gray-600">
-              Four simple steps and your CV starts reaching hiring managers across Australia.
+              Set your preferences once. Wake up to a fresh set of matched jobs and ready-to-send applications.
             </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               {
                 step: "1",
-                title: "Sign up & pay",
-                desc: "Create your account and subscribe for $9.99/week.",
-                icon: Users,
+                title: "Sign up & choose a plan",
+                desc: "Create your account and pick Standard or Pro.",
+                icon: Briefcase,
               },
               {
                 step: "2",
-                title: "Connect Gmail",
-                desc: "Link your Gmail so we can send emails on your behalf.",
-                icon: Mail,
+                title: "Set your preferences",
+                desc: "Tell us your preferred roles, states, roster type, and experience level.",
+                icon: Search,
               },
               {
                 step: "3",
                 title: "Upload your CV",
-                desc: "Upload your PDF CV once. We store it securely.",
-                icon: Shield,
+                desc: "Upload your PDF CV once. We read it to personalise every application.",
+                icon: FileText,
               },
               {
                 step: "4",
-                title: "Sit back & apply",
-                desc: "We send your CV to 20+ HR contacts every morning.",
-                icon: TrendingUp,
+                title: "Get daily AI applications",
+                desc: "Each morning you'll have a cover letter and CV summary for every new match.",
+                icon: Brain,
               },
             ].map((item) => (
               <div key={item.step} className="text-center">
@@ -147,18 +146,20 @@ export default function LandingPage() {
       <section className="bg-gray-50 px-4 sm:px-6 py-12 sm:py-20 md:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Everything you need</h2>
+            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Everything you need to land the role
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {[
-              "Automatically sends to 20+ Australian mining company HR emails",
-              "Professional cold outreach email template with your CV attached",
-              "Real-time dashboard showing today's send count and history",
-              "Pause or resume sending anytime from your dashboard",
-              "Gmail OAuth — emails come from your own address",
-              "Stripe-secured subscription, cancel anytime",
-              "Daily sends at 8am AWST for maximum impact",
-              "Secure CV storage with easy re-upload",
+              "Daily job matching from Adzuna — Australia's largest job board",
+              "AI cover letter tailored to each specific job and your CV",
+              "AI-generated CV summary highlighting the most relevant experience",
+              "Filter by state, roster type (FIFO/DIDO/Residential) and experience level",
+              "One-click copy for cover letters and CV summaries",
+              "Track which jobs you've applied to in your dashboard",
+              "New jobs matched every night, fresh applications every morning",
+              "Secure CV storage — upload once, power every application",
             ].map((feature) => (
               <div key={feature} className="flex items-start gap-3">
                 <CheckCircle className="text-yellow-500 mt-0.5 flex-shrink-0" size={18} />
@@ -171,33 +172,79 @@ export default function LandingPage() {
 
       {/* Pricing */}
       <section id="pricing" className="px-4 sm:px-6 py-12 sm:py-20 md:py-24">
-        <div className="max-w-md mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Simple pricing</h2>
-          <p className="text-gray-600 mb-8 sm:mb-12">One plan. Everything included.</p>
-          <div className="border-2 border-yellow-400 rounded-2xl p-6 sm:p-8 bg-white shadow-lg">
-            <div className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">$9.99</div>
-            <div className="text-gray-500 mb-5 sm:mb-6">per week</div>
-            <ul className="text-left space-y-3 mb-6 sm:mb-8">
-              {[
-                "Daily CV sending to 20+ companies",
-                "Send history & dashboard",
-                "Gmail OAuth integration",
-                "Unlimited CV re-uploads",
-                "Pause / resume anytime",
-                "Cancel anytime, no lock-in",
-              ].map((feature) => (
-                <li key={feature} className="flex items-center gap-3">
-                  <CheckCircle className="text-yellow-500 flex-shrink-0" size={16} />
-                  <span className="text-gray-700 text-sm">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/auth/register"
-              className="block w-full bg-yellow-500 hover:bg-yellow-600 text-white py-4 rounded-xl font-semibold text-base sm:text-lg transition-colors"
-            >
-              Get Started Now
-            </Link>
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Simple pricing</h2>
+            <p className="text-gray-600">Two plans. No hidden fees. Cancel anytime.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Standard */}
+            <div className="border-2 border-gray-200 rounded-2xl p-6 sm:p-8 bg-white">
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Standard</h3>
+              <p className="text-gray-500 text-sm mb-5">Daily alerts + AI applications</p>
+              <div className="mb-6">
+                <span className="text-4xl sm:text-5xl font-bold text-gray-900">$9.99</span>
+                <span className="text-gray-500 ml-1">/ week</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Daily mining job matches",
+                  "AI cover letter per match",
+                  "AI CV summary per match",
+                  "Copy & apply manually",
+                  "Application history",
+                  "Pause or cancel anytime",
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-gray-700">
+                    <CheckCircle className="text-yellow-500 flex-shrink-0" size={15} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/auth/register"
+                className="block w-full text-center border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50 py-3.5 rounded-xl font-semibold transition-colors"
+              >
+                Get Started
+              </Link>
+            </div>
+
+            {/* Pro */}
+            <div className="border-2 border-yellow-400 rounded-2xl p-6 sm:p-8 bg-white shadow-lg relative">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                <span className="bg-yellow-500 text-white text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-1 whitespace-nowrap">
+                  <Zap size={11} />
+                  Most Popular
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Pro</h3>
+              <p className="text-gray-500 text-sm mb-5">Everything + Auto-apply</p>
+              <div className="mb-6">
+                <span className="text-4xl sm:text-5xl font-bold text-gray-900">$24.99</span>
+                <span className="text-gray-500 ml-1">/ week</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Everything in Standard",
+                  "Auto-apply on Seek.com.au",
+                  "Priority job matching",
+                  "Application tracking dashboard",
+                  "Email delivery of daily matches",
+                  "Pause or cancel anytime",
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-gray-700">
+                    <CheckCircle className="text-yellow-500 flex-shrink-0" size={15} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/auth/register"
+                className="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white py-3.5 rounded-xl font-semibold transition-colors"
+              >
+                Get Started
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -209,13 +256,13 @@ export default function LandingPage() {
             Ready to land your next mining job?
           </h2>
           <p className="text-gray-400 mb-6 sm:mb-8 text-base sm:text-lg">
-            Join hundreds of mining professionals who let MineApply do the hard work.
+            Stop writing the same cover letter over and over. Let MineApply do it for you.
           </p>
           <Link
             href="/auth/register"
             className="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-8 sm:px-10 py-4 rounded-xl font-semibold text-base sm:text-lg transition-colors w-full sm:w-auto"
           >
-            Start Your Free Trial
+            Start for $9.99/week
           </Link>
         </div>
       </section>
