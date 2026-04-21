@@ -28,6 +28,11 @@ export async function GET() {
       cvOriginalName: true,
       isActive: true,
       preferredRoles: true,
+      preferredStates: true,
+      preferredRoster: true,
+      experienceLevel: true,
+      emailNotifications: true,
+      language: true,
     },
   });
 

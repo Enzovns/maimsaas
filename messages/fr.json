@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "overview": "Tableau de bord",
+    "jobs": "Emplois",
+    "applications": "Candidatures",
+    "stats": "Statistiques",
+    "preferences": "Préférences",
+    "savedSearches": "Recherches sauvegardées",
+    "referrals": "Parrainage",
+    "account": "Compte",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "whatsIncluded": "Ce qui est inclus",
+    "signOut": "Se déconnecter"
+  },
+  "dashboard": {
+    "goodMorning": "Bonjour",
+    "newToday": "Nouveaux aujourd'hui",
+    "totalMatched": "Total (30 jours)",
+    "applied": "Postulé",
+    "completeSetup": "Finalisez votre configuration",
+    "activatePlan": "Activez un abonnement",
+    "uploadCV": "Téléversez votre CV",
+    "setPreferences": "Définissez vos préférences",
+    "dailyMatchingRuns": "La correspondance s'exécute à 10h UTC",
+    "viewJobMatches": "Voir les offres d'emploi",
+    "browseJobs": "Parcourez les offres du jour et les candidatures IA",
+    "applicationHistory": "Historique des candidatures",
+    "searchCoverLetters": "Recherchez et copiez vos lettres de motivation",
+    "statsInsights": "Statistiques",
+    "applicationTrends": "Tendances et historique des candidatures",
+    "upgradeToPro": "Passer à Pro",
+    "autoApplyDesc": "Candidature auto, priorité de matching, livraison email"
+  },
+  "jobs": {
+    "title": "Offres d'emploi",
+    "subtitle": "offres correspondantes dans les 30 derniers jours",
+    "noMatchesYet": "Aucune offre pour l'instant",
+    "noMatchesDesc": "Vos premières offres apparaîtront après l'exécution nocturne (22h UTC).",
+    "allStates": "Tous les états",
+    "new": "Nouveau",
+    "applied": "Postulé",
+    "dismissed": "Rejeté",
+    "coverLetter": "Lettre de motivation",
+    "cvSummary": "Résumé du CV",
+    "markApplied": "Marquer comme postulé",
+    "dismiss": "Rejeter",
+    "autoApply": "Candidature auto",
+    "comingSoon": "Bientôt",
+    "viewJob": "Voir l'offre"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "saving": "Enregistrement…",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "loading": "Chargement…"
+  },
+  "landing": {
+    "signIn": "Connexion",
+    "getStarted": "Commencer",
+    "tagline": "Candidatures IA pour les mines australiennes",
+    "headline": "Offres minières quotidiennes.",
+    "headlineHighlight": "Candidatures rédigées par IA.",
+    "subtitle": "MineApply scanne les offres minières australiennes chaque jour, les associe à vos préférences, puis génère une lettre de motivation personnalisée pour chacune — prête à copier en quelques secondes.",
+    "startFor": "Commencer à 9,99 $/semaine",
+    "seeHowItWorks": "Comment ça marche →",
+    "noContracts": "Sans engagement. Annulez à tout moment.",
+    "blog": "Blog"
+  }
+}

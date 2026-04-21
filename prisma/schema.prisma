@@ -56,13 +56,32 @@ model User {
   preferredStates      String[]
   preferredRoster      String?
   experienceLevel      String?
+  emailNotifications   Boolean   @default(true)
+  language             String    @default("en")
+  referralCode         String?   @unique
+  referredBy           String?
+  freeWeeksEarned      Int       @default(0)
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
 
-  accounts     Account[]
-  sessions     Session[]
-  sendLogs     SendLog[]
-  applications GeneratedApplication[]
+  accounts       Account[]
+  sessions       Session[]
+  sendLogs       SendLog[]
+  applications   GeneratedApplication[]
+  savedSearches  SavedSearch[]
+}
+
+model SavedSearch {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  roles       String[]
+  states      String[]
+  roster      String?
+  experience  String?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

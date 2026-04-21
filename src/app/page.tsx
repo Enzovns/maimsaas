@@ -18,6 +18,12 @@ export default function LandingPage() {
           <LogoLink />
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
+              href="/blog"
+              className="hidden sm:block text-gray-600 hover:text-gray-900 text-sm font-medium px-2 py-2"
+            >
+              Blog
+            </Link>
+            <Link
               href="/auth/login"
               className="text-gray-600 hover:text-gray-900 text-sm font-medium px-2 py-2"
             >
@@ -276,6 +282,7 @@ export default function LandingPage() {
             © {new Date().getFullYear()} MineApply. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-500">
+            <Link href="/blog" className="hover:text-gray-900">Blog</Link>
             <Link href="/privacy" className="hover:text-gray-900">Privacy</Link>
             <Link href="/terms" className="hover:text-gray-900">Terms</Link>
           </div>

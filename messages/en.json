@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "overview": "Overview",
+    "jobs": "Jobs",
+    "applications": "Applications",
+    "stats": "Stats",
+    "preferences": "Preferences",
+    "savedSearches": "Saved Searches",
+    "referrals": "Referrals",
+    "account": "Account",
+    "settings": "Settings",
+    "help": "Help",
+    "whatsIncluded": "What's Included",
+    "signOut": "Sign out"
+  },
+  "dashboard": {
+    "goodMorning": "Good morning",
+    "newToday": "New today",
+    "totalMatched": "Total (30 days)",
+    "applied": "Applied",
+    "completeSetup": "Complete your setup",
+    "activatePlan": "Activate a plan",
+    "uploadCV": "Upload your CV",
+    "setPreferences": "Set your job preferences",
+    "dailyMatchingRuns": "Daily matching runs at 10pm UTC",
+    "viewJobMatches": "View Job Matches",
+    "browseJobs": "Browse today's matched jobs and AI applications",
+    "applicationHistory": "Application History",
+    "searchCoverLetters": "Search and copy your cover letters",
+    "statsInsights": "Stats & Insights",
+    "applicationTrends": "Application trends and match history",
+    "upgradeToPro": "Upgrade to Pro",
+    "autoApplyDesc": "Auto-apply, priority matching, email delivery"
+  },
+  "jobs": {
+    "title": "Job Matches",
+    "subtitle": "matched jobs in the last 30 days",
+    "noMatchesYet": "No job matches yet",
+    "noMatchesDesc": "Your first matches will appear after the nightly run (10pm UTC).",
+    "allStates": "All states",
+    "new": "New",
+    "applied": "Applied",
+    "dismissed": "Dismissed",
+    "coverLetter": "Cover Letter",
+    "cvSummary": "CV Summary",
+    "markApplied": "Mark Applied",
+    "dismiss": "Dismiss",
+    "autoApply": "Auto-Apply",
+    "comingSoon": "Soon",
+    "viewJob": "View job"
+  },
+  "common": {
+    "save": "Save",
+    "saving": "Saving…",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading…"
+  },
+  "landing": {
+    "signIn": "Sign in",
+    "getStarted": "Get Started",
+    "tagline": "AI-powered job applications for Australian mining",
+    "headline": "Daily mining job matches.",
+    "headlineHighlight": "AI-written applications.",
+    "subtitle": "MineApply scans for new Australian mining jobs every day, matches them to your preferences, then generates a tailored cover letter and CV summary for each one — ready to copy and apply in seconds.",
+    "startFor": "Start for $9.99/week",
+    "seeHowItWorks": "See how it works →",
+    "noContracts": "No contracts. Cancel anytime.",
+    "blog": "Blog"
+  }
+}
